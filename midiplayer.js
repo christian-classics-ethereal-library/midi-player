@@ -68,7 +68,7 @@ var circularBuffer;
 var emptyBuffer;
 
 function initAudio() {
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)({sampleRate:SAMPLE_RATE});
     scriptNode = audioCtx.createScriptProcessor(BUFFER, 0, channels);
     scriptNode.onaudioprocess = onAudioProcess;
     
@@ -395,6 +395,9 @@ function runConversion() {
         midiPlayer_stop = document.getElementById('midiPlayer_stop');
         midiPlayer_totalTime = document.getElementById('midiPlayer_totalTime');
         
+        $.fn.midiPlayer.currentTime = function () {
+            return audioCtx.currentTime;
+        };
         
         var pageDragStart = 0;
         var barDragStart = 0;
