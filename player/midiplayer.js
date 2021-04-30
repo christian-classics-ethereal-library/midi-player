@@ -402,7 +402,7 @@ function runConversion() {
         midiPlayer_totalTime = document.getElementById('midiPlayer_totalTime');
         
         $.fn.midiPlayer.currentTime = function () {
-            return audioCtx.currentTime;
+            return midiPlayer_lastMillisec * midiPlayer_updateRate;
         };
         
         var pageDragStart = 0;
